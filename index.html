@@ -33,7 +33,7 @@
       flex-direction: column;
       gap: 20px;
       width: 80%;
-      max-width: 300px;
+      max-width: 350px;
     }
 
     .btn {
@@ -42,15 +42,23 @@
       border: none;
       padding: 15px;
       border-radius: 10px;
-      font-size: 1em;
+      font-size: 1.1em;
       font-weight: bold;
       cursor: pointer;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .btn:hover {
       background-color: #e0f2f1;
+      transform: scale(1.05);
+    }
+
+    .btn img {
+      margin-right: 10px;
     }
 
     footer {
@@ -74,9 +82,22 @@
   <p>Zpeak it loud, zpeak it proud!</p>
 
   <div class="btn-container">
-    <a href="https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing" class="btn" target="_blank">Folder Materi</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header" class="btn" target="_blank">Unggah Tugas</a>
-    <a id="kehadiran-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header" class="btn" target="_blank">Kehadiran</a>
+    <!-- Folder Materi -->
+    <a href="https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing" class="btn" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Google_Drive_logo.svg/1024px-Google_Drive_logo.svg.png" alt="Google Drive" width="30" height="30">
+      Folder Materi
+    </a>
+
+    <!-- Unggah Tugas -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header" class="btn" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Google_Forms_logo.svg" alt="Google Form" width="30" height="30">
+      Unggah Tugas
+    </a>
+
+    <!-- Kehadiran -->
+    <a id="kehadiran-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header" class="btn" target="_blank">
+      Kehadiran
+    </a>
   </div>
 
   <footer>
