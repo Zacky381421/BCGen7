@@ -70,6 +70,17 @@
       max-width: 600px;
     }
 
+    .iframe-container {
+      width: 80%;
+      max-width: 900px;
+      height: 500px;
+      border: 2px solid #103b3f;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 30px;
+      display: none; /* Default to hidden */
+    }
+
     .disabled {
       background-color: #dcdcdc;
       cursor: not-allowed;
@@ -82,22 +93,19 @@
   <p>Zpeak it loud, zpeak it proud!</p>
 
   <div class="btn-container">
-    <!-- Folder Materi -->
-    <a href="https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing" class="btn" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Google_Drive_logo.svg/1024px-Google_Drive_logo.svg.png" alt="Google Drive" width="30" height="30">
-      Folder Materi
-    </a>
+    <!-- Folder Materi (iframe) -->
+    <button class="btn" id="folder-materi-btn">Folder Materi</button>
 
-    <!-- Unggah Tugas -->
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header" class="btn" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Google_Forms_logo.svg" alt="Google Form" width="30" height="30">
-      Unggah Tugas
-    </a>
+    <!-- Unggah Tugas (iframe) -->
+    <button class="btn" id="unggah-tugas-btn">Unggah Tugas</button>
 
-    <!-- Kehadiran -->
-    <a id="kehadiran-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header" class="btn" target="_blank">
-      Kehadiran
-    </a>
+    <!-- Kehadiran (iframe) -->
+    <button id="kehadiran-btn" class="btn">Kehadiran</button>
+  </div>
+
+  <!-- Iframe container for content -->
+  <div id="iframe-container" class="iframe-container">
+    <iframe id="iframe-content" width="100%" height="100%" src="" frameborder="0" style="border: none;"></iframe>
   </div>
 
   <footer>
@@ -105,22 +113,35 @@
   </footer>
 
   <script>
-    // Waktu dimulai pertemuan (misal: 15:20 pada tanggal tertentu)
-    const startTime = new Date('2025-06-01T15:20:00'); // Ganti dengan waktu pertemuan sesungguhnya
-    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah startTime
-
-    // Ambil tombol kehadiran
+    const folderMateriBtn = document.getElementById('folder-materi-btn');
+    const unggahTugasBtn = document.getElementById('unggah-tugas-btn');
     const kehadiranBtn = document.getElementById('kehadiran-btn');
+    const iframeContainer = document.getElementById('iframe-container');
+    const iframeContent = document.getElementById('iframe-content');
 
-    // Cek apakah waktu sekarang dalam batas yang ditentukan
-    const currentTime = new Date();
+    // Link Google Drive dan Google Form
+    const googleDriveLink = 'https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing';
+    const googleFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header';
+    const kehadiranFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header';
 
-    if (currentTime > endTime) {
-      // Jika sudah lewat 3 menit
-      kehadiranBtn.classList.add('disabled');
-      kehadiranBtn.innerHTML = "Waktu Kehadiran Telah Habis";
-      kehadiranBtn.href = "#";  // Nonaktifkan link
+    // Fungsi untuk menampilkan iframe dengan konten yang sesuai
+    function showIframe(url) {
+      iframeContainer.style.display = 'block';
+      iframeContent.src = url;
     }
+
+    // Event listeners untuk setiap tombol
+    folderMateriBtn.addEventListener('click', () => {
+      showIframe(googleDriveLink);
+    });
+
+    unggahTugasBtn.addEventListener('click', () => {
+      showIframe(googleFormLink);
+    });
+
+    kehadiranBtn.addEventListener('click', () => {
+      showIframe(kehadiranFormLink);
+    });
   </script>
 
 </body>
