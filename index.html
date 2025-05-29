@@ -1,148 +1,43 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zpeak</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #103b3f; /* navy kehijau-hijauan */
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    h1 {
-      margin-top: 20px;
-      font-size: 3em;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 40px;
-    }
-
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 80%;
-      max-width: 350px;
-    }
-
-    .btn {
-      background-color: white;
-      color: #103b3f;
-      border: none;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: #e0f2f1;
-      transform: scale(1.05);
-    }
-
-    .btn img {
-      margin-right: 10px;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9em;
-      font-style: italic;
-      width: 80%;
-      max-width: 600px;
-    }
-
-    .iframe-container {
-      width: 80%;
-      max-width: 900px;
-      height: 500px;
-      border: 2px solid #103b3f;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 30px;
-      display: none; /* Default to hidden */
-    }
-
-    .disabled {
-      background-color: #dcdcdc;
-      cursor: not-allowed;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zpeak</title>
+    <style>
+        /* CSS Style */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #103b3f; /* Navy kehijau-hijauan */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 30px;
+        }
+        button {
+            background-color: #0f5f4a;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #078a74;
+        }
+    </style>
 </head>
 <body>
+    <h1>Zpeak</h1>
+    <p>Selamat datang di Zpeak! Klik tombol di bawah untuk berinteraksi.</p>
+    
+    <!-- Tombol untuk mengaktifkan JavaScript -->
+    <button id="myButton">Klik Saya</button>
 
-  <h1>Zpeak</h1>
-  <p>Zpeak it loud, zpeak it proud!</p>
-
-  <div class="btn-container">
-    <!-- Folder Materi (iframe) -->
-    <button class="btn" id="folder-materi-btn">Folder Materi</button>
-
-    <!-- Unggah Tugas (iframe) -->
-    <button class="btn" id="unggah-tugas-btn">Unggah Tugas</button>
-
-    <!-- Kehadiran (iframe) -->
-    <button id="kehadiran-btn" class="btn">Kehadiran</button>
-  </div>
-
-  <!-- Iframe container for content -->
-  <div id="iframe-container" class="iframe-container">
-    <iframe id="iframe-content" width="100%" height="100%" src="" frameborder="0" style="border: none;"></iframe>
-  </div>
-
-  <footer>
-    “Education is not preparation for life, education is life itself.” — John Dewey
-  </footer>
-
-  <script>
-    const folderMateriBtn = document.getElementById('folder-materi-btn');
-    const unggahTugasBtn = document.getElementById('unggah-tugas-btn');
-    const kehadiranBtn = document.getElementById('kehadiran-btn');
-    const iframeContainer = document.getElementById('iframe-container');
-    const iframeContent = document.getElementById('iframe-content');
-
-    // Link Google Drive dan Google Form
-    const googleDriveLink = 'https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing';
-    const googleFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header';
-    const kehadiranFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header';
-
-    // Fungsi untuk menampilkan iframe dengan konten yang sesuai
-    function showIframe(url) {
-      iframeContainer.style.display = 'block';
-      iframeContent.src = url;
-    }
-
-    // Event listeners untuk setiap tombol
-    folderMateriBtn.addEventListener('click', () => {
-      showIframe(googleDriveLink);
-    });
-
-    unggahTugasBtn.addEventListener('click', () => {
-      showIframe(googleFormLink);
-    });
-
-    kehadiranBtn.addEventListener('click', () => {
-      showIframe(kehadiranFormLink);
-    });
-  </script>
-
+    <!-- Menautkan ke file JavaScript eksternal -->
+    <script src="script.js"></script> <!-- Gantilah dengan nama file JavaScript Anda -->
 </body>
 </html>
