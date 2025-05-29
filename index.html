@@ -7,81 +7,100 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0b3d3b; /* Navy kehijau-hijauan */
+      font-family: Arial, sans-serif;
+      background-color: #103b3f; /* navy kehijau-hijauan */
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
       text-align: center;
     }
 
     h1 {
+      margin-top: 20px;
       font-size: 3em;
-      margin-top: 30px;
-      margin-bottom: 10px;
     }
 
-    .tagline {
+    p {
       font-size: 1.2em;
-      font-style: italic;
-      margin-bottom: 50px;
-      color: #cfe9e7;
+      margin-bottom: 40px;
     }
 
-    .buttons {
+    .btn-container {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      margin-bottom: 60px;
+      width: 80%;
+      max-width: 300px;
     }
 
     .btn {
       background-color: white;
-      color: #0b3d3b;
-      padding: 15px 40px;
+      color: #103b3f;
+      border: none;
+      padding: 15px;
       border-radius: 10px;
-      text-decoration: none;
-      font-size: 1.2em;
+      font-size: 1em;
       font-weight: bold;
-      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
     }
 
     .btn:hover {
-      background-color: transparent;
-      color: white;
-      border: 2px solid white;
+      background-color: #e0f2f1;
     }
 
-    .footer {
-      font-size: 1em;
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
       font-style: italic;
-      color: #cfe9e7;
-      padding: 20px;
-      margin-bottom: 20px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .disabled {
+      background-color: #dcdcdc;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
+
   <h1>Zpeak</h1>
-  <div class="tagline">Zpeak it loud, zpeak it proud!</div>
+  <p>Zpeak it loud, zpeak it proud!</p>
 
-  <div class="buttons">
-    <!-- Link Google Drive Folder Materi -->
+  <div class="btn-container">
     <a href="https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing" class="btn" target="_blank">Folder Materi</a>
-    
-    <!-- Link Google Form Unggah Tugas -->
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header" class="btn" target="_blank">Unggah Tugas</a>
-    
-    <!-- Link Google Form Kehadiran (ubah jika ada) -->
-    <a href="#" class="btn">Kehadiran</a>
+    <a id="kehadiran-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header" class="btn" target="_blank">Kehadiran</a>
   </div>
 
-  <div class="footer">
-    "Education is not preparation for life, education is life itself."<br>– John Dewey
-  </div>
+  <footer>
+    “Education is not preparation for life, education is life itself.” — John Dewey
+  </footer>
+
+  <script>
+    // Waktu dimulai pertemuan (misal: 15:20 pada tanggal tertentu)
+    const startTime = new Date('2025-06-01T15:20:00'); // Ganti dengan waktu pertemuan sesungguhnya
+    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah startTime
+
+    // Ambil tombol kehadiran
+    const kehadiranBtn = document.getElementById('kehadiran-btn');
+
+    // Cek apakah waktu sekarang dalam batas yang ditentukan
+    const currentTime = new Date();
+
+    if (currentTime > endTime) {
+      // Jika sudah lewat 3 menit
+      kehadiranBtn.classList.add('disabled');
+      kehadiranBtn.innerHTML = "Waktu Kehadiran Telah Habis";
+      kehadiranBtn.href = "#";  // Nonaktifkan link
+    }
+  </script>
+
 </body>
 </html>
