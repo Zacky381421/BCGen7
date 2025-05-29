@@ -1,43 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zpeak</title>
-    <style>
-        /* CSS Style */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #103b3f; /* Navy kehijau-hijauan */
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            margin-top: 30px;
-        }
-        button {
-            background-color: #0f5f4a;
-            color: white;
-            font-size: 18px;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #078a74;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zpeak</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #103b3f; /* navy kehijau-hijauan */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .btn {
+      background-color: white;
+      color: #103b3f;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e0f2f1;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      font-style: italic;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .disabled {
+      background-color: #dcdcdc;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
-    <h1>Zpeak</h1>
-    <p>Selamat datang di Zpeak! Klik tombol di bawah untuk berinteraksi.</p>
-    
-    <!-- Tombol untuk mengaktifkan JavaScript -->
-    <button id="myButton">Klik Saya</button>
 
-    <!-- Menautkan ke file JavaScript eksternal -->
-    <script src="script.js"></script> <!-- Gantilah dengan nama file JavaScript Anda -->
+  <h1>Zpeak</h1>
+  <p>Zpeak it loud, zpeak it proud!</p>
+
+  <div class="btn-container">
+    <a href="https://drive.google.com/drive/folders/1hA30LNK9cMnBsHZl1Bm57sE3ixke4Fja?usp=sharing" class="btn" target="_blank">Folder Materi</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBu5NTkghnKEAhDa3eUXiKabBEg9RfJOWEu5rdxp1bO-WVxQ/viewform?usp=header" class="btn" target="_blank">Unggah Tugas</a>
+    <a id="kehadiran-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfkbUm-ZdsxOs9Dww8YpJe5Gm7qlbLsaG1CE-ctG9LiZpgK3Q/viewform?usp=header" class="btn" target="_blank">Kehadiran</a>
+  </div>
+
+  <footer>
+    “Education is not preparation for life, education is life itself.” — John Dewey
+  </footer>
+
+  <script>
+    // Waktu dimulai pertemuan (misal: 15:20 pada tanggal tertentu)
+    const startTime = new Date('2025-06-01T15:20:00'); // Ganti dengan waktu pertemuan sesungguhnya
+    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah startTime
+
+    // Ambil tombol kehadiran
+    const kehadiranBtn = document.getElementById('kehadiran-btn');
+
+    // Cek apakah waktu sekarang dalam batas yang ditentukan
+    const currentTime = new Date();
+
+    if (currentTime > endTime) {
+      // Jika sudah lewat 3 menit
+      kehadiranBtn.classList.add('disabled');
+      kehadiranBtn.innerHTML = "Waktu Kehadiran Telah Habis";
+      kehadiranBtn.href = "#";  // Nonaktifkan link
+    }
+  </script>
+
 </body>
 </html>
