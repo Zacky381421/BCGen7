@@ -85,37 +85,22 @@
 
   <script>
  <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  // Waktu dimulai pertemuan (misal: 15:20 pada tanggal tertentu)
+    const startTime = new Date('2025-07-10T00:50:00'); // Ganti dengan waktu pertemuan sesungguhnya
+    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah startTime
+
+    // Ambil tombol kehadiran
     const kehadiranBtn = document.getElementById('kehadiran-btn');
-    const now = new Date();
 
-    const startHour = 1;
-    const startMinute = 35;
-    const durationMinutes = 3;
+    // Cek apakah waktu sekarang dalam batas yang ditentukan
+    const currentTime = new Date();
 
-    const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), startHour, startMinute, 0);
-    const endTime = new Date(startTime.getTime() + durationMinutes * 60 * 1000);
-
-    console.log("Sekarang:", now.toLocaleString());
-    console.log("Buka     :", startTime.toLocaleString());
-    console.log("Tutup    :", endTime.toLocaleString());
-
-    if (now >= startTime && now <= endTime) {
-      // Waktu dalam rentang → aktif
-      kehadiranBtn.classList.remove('disabled');
-      kehadiranBtn.innerText = "Attendance (Open)";
-      // href tetap aktif
-    } else {
-      // Di luar waktu → nonaktif
+    if (currentTime > endTime) {
+      // Jika sudah lewat 3 menit
       kehadiranBtn.classList.add('disabled');
-      kehadiranBtn.href = "#"; // matikan tautan
-      if (now < startTime) {
-        kehadiranBtn.innerText = "Attendance not yet open";
-      } else {
-        kehadiranBtn.innerText = "The attendance period has ended";
-      }
+      kehadiranBtn.innerHTML = "The attendance period has ended";
+      kehadiranBtn.href = "#";  // Nonaktifkan link
     }
-  });
 </script>
   </script>
 
