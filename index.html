@@ -65,6 +65,7 @@
     .disabled {
       background-color: #dcdcdc;
       cursor: not-allowed;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -76,7 +77,7 @@
   <div class="btn-container">
     <a href="https://drive.google.com/drive/folders/1PrvD7IgudPLomGTCXVEMugWC3tt-m1bh?usp=sharing" class="btn" target="_blank">Lesson</a>
     <a href="https://forms.gle/sYeKHknnLbvhA7uv6" class="btn" target="_blank">Assignment Upload</a>
-    <a id="kehadiran-btn" href="https://forms.gle/nX1tGtCkA4xm7h6d8" class="btn" target="_blank">Attendance</a>
+    <a id="kehadiran-btn" href="#" class="btn disabled">Attendance (Closed)</a>
   </div>
 
   <footer>
@@ -84,24 +85,33 @@
   </footer>
 
   <script>
- <script>
-  // Waktu dimulai pertemuan (misal: 15:20 pada tanggal tertentu)
-    const startTime = new Date('2025-07-10T00:50:00'); // Ganti dengan waktu pertemuan sesungguhnya
-    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah startTime
+    const attendanceBtn = document.getElementById('kehadiran-btn');
+    const attendanceLink = "https://forms.gle/nX1tGtCkA4xm7h6d8"; // Ganti sesuai kebutuhan
 
-    // Ambil tombol kehadiran
-    const kehadiranBtn = document.getElementById('kehadiran-btn');
+    function updateAttendanceStatus() {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 5, 0); // 01:05
+      const end = new Date(start.getTime() + 3 * 60 * 1000); // sampai 01:08
 
-    // Cek apakah waktu sekarang dalam batas yang ditentukan
-    const currentTime = new Date();
-
-    if (currentTime > endTime) {
-      // Jika sudah lewat 3 menit
-      kehadiranBtn.classList.add('disabled');
-      kehadiranBtn.innerHTML = "The attendance period has ended";
-      kehadiranBtn.href = "#";  // Nonaktifkan link
+      if (now >= start && now <= end) {
+        // Waktu hadir aktif
+        attendanceBtn.classList.remove("disabled");
+        attendanceBtn.href = attendanceLink;
+        attendanceBtn.innerText = "Attendance (Open)";
+      } else if (now < start) {
+        attendanceBtn.classList.add("disabled");
+        attendanceBtn.href = "#";
+        attendanceBtn.innerText = "Attendance Not Yet Open";
+      } else {
+        attendanceBtn.classList.add("disabled");
+        attendanceBtn.href = "#";
+        attendanceBtn.innerText = "The Attendance Period Has Ended";
+      }
     }
-</script>
+
+    // Jalankan saat halaman dibuka & setiap detik
+    updateAttendanceStatus();
+    setInterval(updateAttendanceStatus, 1000);
   </script>
 
 </body>
