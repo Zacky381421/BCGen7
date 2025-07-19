@@ -84,26 +84,30 @@
   </footer>
 
   <script>
-   // Waktu kehadiran otomatis: jam 01:05 dini hari
-    const jamMulai = 1;
-    const menitMulai = 9;
+  <script>
+  // Atur jam mulai dan menit mulai (01:09)
+  const jamMulai = 1;
+  const menitMulai = 16;
 
-    const now = new Date();
-    const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), jamMulai, menitMulai, 0);
-    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit
+  // Ambil waktu hari ini pukul 01:09
+  const now = new Date();
+  const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), jamMulai, menitMulai, 0);
+  const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit
 
-    const kehadiranBtn = document.getElementById('kehadiran-btn');
-    const currentTime = new Date();
+  const kehadiranBtn = document.getElementById('kehadiran-btn');
+  const currentTime = new Date();
 
-    if (currentTime < startTime) {
-      kehadiranBtn.classList.add('disabled');
-      kehadiranBtn.innerHTML = "Attendance is not open yet";
-      kehadiranBtn.href = "#";
-    } else if (currentTime > endTime) {
-      kehadiranBtn.classList.add('disabled');
-      kehadiranBtn.innerHTML = "The attendance period has ended";
-      kehadiranBtn.href = "#";
-    }
+  // Tombol hanya aktif jika currentTime antara startTime dan endTime
+  if (currentTime >= startTime && currentTime <= endTime) {
+    // tombol aktif, tidak diubah
+  } else {
+    // tombol nonaktif
+    kehadiranBtn.classList.add('disabled');
+    kehadiranBtn.innerHTML = "The attendance period has ended";
+    kehadiranBtn.href = "#";
+  }
+</script>
+
   </script>
 
 </body>
