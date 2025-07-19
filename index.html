@@ -84,29 +84,36 @@
   </footer>
 
   <script>
-  <script>
-   const kehadiranBtn = document.getElementById('kehadiran-btn');
-  const now = new Date();
+ <script>
+  // Jalankan skrip hanya setelah seluruh elemen dimuat
+  window.addEventListener('DOMContentLoaded', function () {
+    const kehadiranBtn = document.getElementById('kehadiran-btn');
+    const now = new Date();
 
-  // Buat waktu 01:09 dan 01:12 hari ini
-  const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 23, 0);   // 01:09
-  const endTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 26, 0);    // 01:12
+    // Atur jam mulai dan jam selesai
+    const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 9, 0);  // 01:09
+    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah 01:09 → 01:12
 
-  // Cek waktu sekarang terhadap batas waktu
-  if (now >= startTime && now <= endTime) {
-    // Tombol aktif, tidak diubah
-    kehadiranBtn.classList.remove('disabled');
-    kehadiranBtn.innerHTML = "Attendance (Open)";
-  } else {
-    // Tombol nonaktif
-    kehadiranBtn.classList.add('disabled');
-    kehadiranBtn.innerHTML = (now < startTime) 
-      ? "Attendance not yet open"
-      : "The attendance period has ended";
-    kehadiranBtn.href = "#"; // Nonaktifkan link
-  }
+    // Tampilkan waktu saat ini di console untuk debugging
+    console.log("Sekarang:", now.toLocaleTimeString());
+    console.log("Buka:", startTime.toLocaleTimeString());
+    console.log("Tutup:", endTime.toLocaleTimeString());
+
+    // Cek apakah sekarang dalam rentang waktu
+    if (now >= startTime && now <= endTime) {
+      // Link aktif
+      kehadiranBtn.classList.remove('disabled');
+      kehadiranBtn.innerHTML = "Attendance (Open)";
+    } else {
+      // Link nonaktif
+      kehadiranBtn.classList.add('disabled');
+      kehadiranBtn.innerHTML = (now < startTime)
+        ? "Attendance not yet open"
+        : "The attendance period has ended";
+      kehadiranBtn.href = "#";
+    }
+  });
 </script>
-
   </script>
 
 </body>
