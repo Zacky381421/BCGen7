@@ -85,32 +85,25 @@
 
   <script>
   <script>
-  // Waktu mulai: 01:09
-  const jamMulai = 1;
-  const menitMulai = 20;
-
+   const kehadiranBtn = document.getElementById('kehadiran-btn');
   const now = new Date();
-  const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), jamMulai, menitMulai, 0);
-  const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // Tambahkan 3 menit
 
-  const kehadiranBtn = document.getElementById('kehadiran-btn');
-  const currentTime = new Date();
+  // Buat waktu 01:09 dan 01:12 hari ini
+  const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 23, 0);   // 01:09
+  const endTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 26, 0);    // 01:12
 
-  if (currentTime >= startTime && currentTime <= endTime) {
-    // Tombol aktif, tidak diapa-apakan
+  // Cek waktu sekarang terhadap batas waktu
+  if (now >= startTime && now <= endTime) {
+    // Tombol aktif, tidak diubah
     kehadiranBtn.classList.remove('disabled');
     kehadiranBtn.innerHTML = "Attendance (Open)";
-    // href tetap aktif
-  } else if (currentTime < startTime) {
-    // Belum waktunya
-    kehadiranBtn.classList.add('disabled');
-    kehadiranBtn.innerHTML = "Attendance not yet open";
-    kehadiranBtn.href = "#";
   } else {
-    // Sudah lewat waktunya
+    // Tombol nonaktif
     kehadiranBtn.classList.add('disabled');
-    kehadiranBtn.innerHTML = "The attendance period has ended";
-    kehadiranBtn.href = "#";
+    kehadiranBtn.innerHTML = (now < startTime) 
+      ? "Attendance not yet open"
+      : "The attendance period has ended";
+    kehadiranBtn.href = "#"; // Nonaktifkan link
   }
 </script>
 
