@@ -71,7 +71,7 @@
 <body>
 
   <h1>Bilingual Class Gen 7</h1>
-  <p></p>
+  <p>2025 - 2026</p>
 
   <div class="btn-container">
     <a href="https://drive.google.com/drive/folders/1PrvD7IgudPLomGTCXVEMugWC3tt-m1bh?usp=sharing" class="btn" target="_blank">Lesson</a>
@@ -84,21 +84,25 @@
   </footer>
 
   <script>
-    // Waktu dimulai pertemuan (misal: 15:20 pada tanggal tertentu)
-    const startTime = new Date('2025-07-20T00:50:00'); // Ganti dengan waktu pertemuan sesungguhnya
-    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit setelah startTime
+   // Waktu kehadiran otomatis: jam 01:05 dini hari
+    const jamMulai = 1;
+    const menitMulai = 5;
 
-    // Ambil tombol kehadiran
+    const now = new Date();
+    const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), jamMulai, menitMulai, 0);
+    const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit
+
     const kehadiranBtn = document.getElementById('kehadiran-btn');
-
-    // Cek apakah waktu sekarang dalam batas yang ditentukan
     const currentTime = new Date();
 
-    if (currentTime > endTime) {
-      // Jika sudah lewat 3 menit
+    if (currentTime < startTime) {
+      kehadiranBtn.classList.add('disabled');
+      kehadiranBtn.innerHTML = "Attendance is not open yet";
+      kehadiranBtn.href = "#";
+    } else if (currentTime > endTime) {
       kehadiranBtn.classList.add('disabled');
       kehadiranBtn.innerHTML = "The attendance period has ended";
-      kehadiranBtn.href = "#";  // Nonaktifkan link
+      kehadiranBtn.href = "#";
     }
   </script>
 
