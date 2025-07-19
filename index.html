@@ -85,23 +85,29 @@
 
   <script>
   <script>
-  // Atur jam mulai dan menit mulai (01:09)
+  // Waktu mulai: 01:09
   const jamMulai = 1;
-  const menitMulai = 16;
+  const menitMulai = 20;
 
-  // Ambil waktu hari ini pukul 01:09
   const now = new Date();
   const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), jamMulai, menitMulai, 0);
-  const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // 3 menit
+  const endTime = new Date(startTime.getTime() + 3 * 60 * 1000); // Tambahkan 3 menit
 
   const kehadiranBtn = document.getElementById('kehadiran-btn');
   const currentTime = new Date();
 
-  // Tombol hanya aktif jika currentTime antara startTime dan endTime
   if (currentTime >= startTime && currentTime <= endTime) {
-    // tombol aktif, tidak diubah
+    // Tombol aktif, tidak diapa-apakan
+    kehadiranBtn.classList.remove('disabled');
+    kehadiranBtn.innerHTML = "Attendance (Open)";
+    // href tetap aktif
+  } else if (currentTime < startTime) {
+    // Belum waktunya
+    kehadiranBtn.classList.add('disabled');
+    kehadiranBtn.innerHTML = "Attendance not yet open";
+    kehadiranBtn.href = "#";
   } else {
-    // tombol nonaktif
+    // Sudah lewat waktunya
     kehadiranBtn.classList.add('disabled');
     kehadiranBtn.innerHTML = "The attendance period has ended";
     kehadiranBtn.href = "#";
