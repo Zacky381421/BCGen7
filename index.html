@@ -90,8 +90,8 @@
 
     function updateAttendanceStatus() {
       const now = new Date();
-      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 57, 0); // 01:05
-      const end = new Date(start.getTime() + 3 * 60 * 1000); // sampai 01:08
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 10, 0); // 01:05
+      const end = new Date(start.getTime() + 5 * 60 * 1000); // sampai 01:08
 
       if (now >= start && now <= end) {
         // Waktu hadir aktif
@@ -101,11 +101,11 @@
       } else if (now < start) {
         attendanceBtn.classList.add("disabled");
         attendanceBtn.href = "#";
-        attendanceBtn.innerText = "Attendance Not Yet Open :)";
+        attendanceBtn.innerText = "Attendance (Not Yet Open)";
       } else {
         attendanceBtn.classList.add("disabled");
         attendanceBtn.href = "#";
-        attendanceBtn.innerText = "Sorry, you're late :(";
+        attendanceBtn.innerText = "Attendance (Sorry, you're late)";
       }
     }
 
