@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bilingual Class Gen 7</title>
+  <title>Bilingual Class</title>
   <style>
     body {
       margin: 0;
@@ -90,7 +90,7 @@
 
     function updateAttendanceStatus() {
       const now = new Date();
-      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 10, 0); // 01:05
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 20, 0); // 01:05
       const end = new Date(start.getTime() + 5 * 60 * 1000); // sampai 01:08
 
       if (now >= start && now <= end) {
